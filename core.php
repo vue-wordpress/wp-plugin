@@ -6,6 +6,24 @@ Description: Optimize endpoints for Vue-Wordpress module
 Author: Filip Jędrasik
 Author URI: https://github.com/Fifciu
 */
+
+require_once "util/GetFlushedValue.php";
+
+function wp_api_v2_vuewp_base () {
+    $data = new stdClass;
+    $data->title = GetFlushedValue(function () {
+        bloginfo('title');
+    });
+    $data->description = GetFlushedValue(function () {
+        bloginfo('description');
+    });
+
+    $response = new WP_REST_Response($data);
+    $response->set_status(200);
+
+    return $response;
+  }
+  
 /**
  * Get all registered menus
  * @return array List of menus with slug and description
@@ -122,5 +140,11 @@ add_action('rest_api_init', function () {
     register_rest_route('vuewp/v1', '/menus/(?P<id>[a-zA-Z0-9_-]+)', array(
         'methods' => 'GET',
         'callback' => 'wp_api_v2_menus_get_menu_data',
+    ) );
+
+    // wp-json optimized
+    register_rest_route('vuewp/v1', '/meta', array(
+        'methods' => 'GET',
+        'callback' => 'wp_api_v2_vuewp_base',
     ) );
 } );
