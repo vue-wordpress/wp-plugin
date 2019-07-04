@@ -10,6 +10,15 @@
         $post = get_page_by_path($data['id']);
       }
 
+      if ($post == null) {
+        // Search post by slug
+        $args = array(
+          'name' => $data['id']
+        );
+        $post = get_posts($args);
+        $post = $post[0];
+      }
+
       
       if ($data['boost']) {
         ObtainKeys($post, [
