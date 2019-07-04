@@ -1,6 +1,12 @@
 # api-optimize
 Wordpress' plugin which extends Rest API to make core plugin faster
 
+## Docker's instructions
+For launch Wordpress with plugin in the container just:   
+1. Clone the plugin   
+2. Go in and run **docker-compose up**   
+And it will be accessible under **localhost:8080**   
+
 ## Endpoints
 
 ### GET /wp-json/vuewp/v1/menus/with-items
