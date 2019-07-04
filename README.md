@@ -66,16 +66,16 @@ From **~80KB** to **0.7KB**
 
 <br>
 
-### `GET /wp-json/vuewp/v1/page/<id/slug>`
-
-<br>
-
-Returns requested page by ID or Slug.
-
-<br>
-
 ### `GET /wp-json/vuewp/v1/post/<id>`
   
 <br>
 
-Returns requested post by ID or Slug.
+Returns requested post (everything in WP is post - page also) by ID or Slug.
+
+<br>
+
+### `GET /wp-json/vuewp/v1/posts/<id>`
+  
+<br>
+
+Returns requested posts (a few) by ID or Slug, separated by commas.
