@@ -5,7 +5,6 @@
   function fetch ($data) {
 
       $post = \VWP\Util\Post\get_post($data);
-
       
       if ($data['boost']) {
         ObtainKeys($post, [

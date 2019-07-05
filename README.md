@@ -78,4 +78,4 @@ Returns requested post (everything in WP is post - page also) by ID or Slug.
   
 <br>
 
-Returns requested posts (a few) by ID or Slug, separated by commas.
+Returns requested posts (a few) (not working on pages yet) by ID or Slug, separated by commas.

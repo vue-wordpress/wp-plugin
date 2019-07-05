@@ -5,7 +5,7 @@
   function get_post($data) {
 
     if (is_numeric($data['id'])) {
-      $post = get_post($data['id']);
+      $post = \get_post($data['id']);
     } else {
       $post = get_page_by_path($data['id']);
     }
@@ -43,22 +43,29 @@
     }
 
     $filter = [];
+    $filter["numberposts"] = -1;
+
     if(sizeof($postIn) > 0) {
 
-      $filter["post_in"] = $postIn;
+      $filter["include"] = $postIn;
+      $postsById = \get_posts($filter);
 
     }
     if(sizeof($postNameIn) > 0) {
 
-      $filter["post_name_in"] = $postNameIn;
+      $postsBySlug = \get_posts(array(
+        "post_name__in" => $postNameIn
+      ));
       
     }
 
-    print_r($filter);
+    
 
-    $posts = get_posts($filter);
+    // print_r(\WP_Query::parse_query($filter));
 
-    return $posts;
+    
+
+    return array_merge($postsById, $postsBySlug);
   }
 
 ?>
